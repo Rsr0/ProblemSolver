@@ -1,60 +1,33 @@
 class Solution {
 public:
-    
-    class ele{
-        public:
-        int val;
-        int idx;
-        int row;
-        int size;
-        
-        ele(int v,int i, int r, int s){
-            val=v;
-            idx=i;
-            row=r;
-            size=s;
-        }  
-    };
-    struct comp{
-        bool operator()(ele a, ele  b){
-            return a.val > b.val;
-        }
-    };
-    
     vector<int> smallestRange(vector<vector<int>>& nums) {
-        int mn=INT_MAX,mx=INT_MIN,range=INT_MAX;
-        
-        priority_queue<ele, vector<ele>, comp> pq;
-        int k=nums.size();
-        int low, high;
-        
-        for(int i=0;i<k;i++){
-            pq.push(ele(nums[i][0],0,i,nums[i].size()));
-            mn=min(mn, nums[i][0]);
-            mx=max(mx, nums[i][0]);
+
+        vector<int> ans;     
+         vector<pair<int,int>> order; // value, list
+        for(int i=0;i<nums.size();i++){
+           for(int j:nums[i])
+               order.push_back({j,i});
         }
         
-        while(!pq.empty()){
-            ele temp=pq.top();
-            pq.pop();
-            
-            int curr_min=temp.val;
-            if(range > mx-curr_min){
-                mn=curr_min;
-                range=mx-mn;
-                low=mn;
-                high=mx;
+        sort(order.begin(),order.end());
+        
+        int j=0, k=0;
+        unordered_map<int,int> mp;
+        
+        for(int i=0;i<order.size();i++){
+            if(! mp[order[i].second]++) 
+                k++;
+            if(k==nums.size()){
+                while(mp[order[j].second]>1)
+                        mp[order[j++].second]--;
+                if(ans.empty() || ans[1]-ans[0] > order[i].first - order[j].first){
+
+                  ans={order[j].first,order[i].first};
+                }
             }
             
-            if(temp.idx==temp.size-1)
-                break;
-            
-            temp.idx+=1;
-            pq.push(ele(nums[temp.row][temp.idx], temp.idx, temp.row, nums[temp.row].size()));
-            mx=max(mx,nums[temp.row][temp.idx]);
-            
         }
-        return {low,high};
+        return ans;
     
     }
 };
