@@ -1,22 +1,22 @@
 class Solution {
 public:
-    vector<int> dp;
-    
-    int rec(int n){
-        if(n==0) return 0;
-        if(n<0) return INT_MAX;
-        if(dp[n]!=0) return dp[n];
-
-        int count=n;
-        for(int i=1;i*i<=n;i++)
-            count=min(count, rec(n-(i*i)));
-
-        dp[n]=count+1;
-        return count+1;
-    }
     
     int numSquares(int n) {
-        dp.resize(n+1,0);
-        return rec(n);
+        // perfect square
+        if(ceil(sqrt(n))==floor(sqrt(n)))
+            return 1;
+        
+        while(n%4==0)  ////Remove 4^a term
+            n/=4;
+        
+        if(n%8==7)  //n in the form of (8b + 7)
+            return 4;
+        
+        for(int i=1;i*i<=n;i++){
+            int base=sqrt(n-(i*i));
+            if(base*base==n-i*i)
+                return 2;
+        }
+        return 3;
     }
 };
