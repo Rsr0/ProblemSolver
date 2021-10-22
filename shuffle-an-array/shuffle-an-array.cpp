@@ -1,8 +1,9 @@
 class Solution {
 public:
-    vector<int> nums;
+    vector<int> nums,copy;
     Solution(vector<int>& nums) {
         this->nums=nums;
+        this->copy=nums;
     }
     
     /** Resets the array to its original configuration and return it. */
@@ -12,12 +13,12 @@ public:
     
     /** Returns a random shuffling of the array. */
     vector<int> shuffle() {
-        vector<int> res(nums);
-        for(int i=0;i<res.size();i++){
-            int idx=rand()%(res.size()-i);
-            swap(res[i],res[i+idx]);
+        for(int i=nums.size();i>0;i--){
+            int x=rand()%i;
+            swap(copy[x],copy[i-1]);
         }
-        return res;
+       
+        return copy;
     }
 };
 
