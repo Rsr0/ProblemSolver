@@ -13,13 +13,12 @@ public:
         while(!pq.empty()){
             // ans+=string(pq.top().first, pq.top().second);
             
-            auto curr=pq.top(); // pair<int, char>
+            int size=pq.top().first; // pair<int, char>
+            char ch=pq.top().second;
             pq.pop();
-            int count=curr.first;    // frequency
-            while(count > 0){   
-                ans+=curr.second;  // character
-                    count--;
-            }
+        
+            for(int i=0;i<size;i++)   
+                ans+=ch;  // adding freq times character
         }
         return ans;
     }
