@@ -16,16 +16,14 @@ public:
             head=head->next;
         
         ListNode*  curr=head;
-        ListNode* prev=NULL;
-        while(curr!=NULL){
-            if(curr->val==val){
-                prev->next=curr->next;
+
+        while(curr!=NULL && curr->next!=NULL){
+            if(curr->next->val==val)
+                curr->next=curr->next->next;
+            
+            else
                 curr=curr->next;
-            }
-            else{
-                prev=curr;
-                curr=curr->next;
-            }
+            
         }
         return head;
     }
