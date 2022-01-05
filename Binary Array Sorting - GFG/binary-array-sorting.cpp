@@ -18,19 +18,14 @@ class Solution{
        /**************
         * No need to print the array
         * ************/
-        int zeroes=0;
-        for(int i=0;i<N;i++){
-            if(!A[i])
-                zeroes++;
-        }
-        
-        for(int i=0;i<N;i++)
-        {
-         if(i<zeroes)
-             A[i]=0;
-         else
-            A[i]=1;
-         
+        int l=0, r=N-1;
+        while(l<r){
+            if(A[l]==0)
+                l++;
+            else if(A[r]==1)
+                r--;
+            else
+            swap(A[l++],A[r--]);
         }
     }
 };
