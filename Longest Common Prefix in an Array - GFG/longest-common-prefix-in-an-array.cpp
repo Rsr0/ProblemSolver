@@ -11,23 +11,18 @@ class Solution{
   public:
     
     string longestCommonPrefix (string arr[], int N)
-    {
+    {   
+        if(N==1) return arr[0];
         // your code here
-        string res="";
-        int len=arr[0].length();
-        for(int i=0;i<len;i++){
-            char c=arr[0][i];
-            for(int j=1;j<N;j++){
-                if(c!=arr[j][i]){
-                    if(res.empty())
-                        return "-1";
-                    return res;
-                }
-
+        string res=arr[0];
+        for(int i=1;i<N;i++){
+            while(arr[i].find(res)){ // common prefix
+                res=res.substr(0, res.size()-1);
             }
-            res+=c;
         }
+        if(res=="") return "-1";
         return res;
+
     }
 };
 
