@@ -12,10 +12,12 @@ public:
         // int ones=(1<<N)-1;
       
         for(int i=0;i<N;i++){
-            if(S[i]=='1')
-                S[i]='0';
-            else
-                S[i]='1';
+            // if(S[i]=='1')
+            //     S[i]='0';
+            // else
+            //     S[i]='1';
+            
+            S[i]^=1;
         }
         return S;
     }
