@@ -16,15 +16,16 @@ public:
     }
     
     int getRandom() {
-        ListNode* curr=root, *ans=NULL;
+        ListNode* curr=root;
+        int ans=0;
         int i=1;
         while(curr){
             if(rand()%i==0)
-                ans=curr;
+                ans=curr->val;
             i++;
             curr=curr->next;
         }
-        return ans->val;
+        return ans;
     }
 };
 
