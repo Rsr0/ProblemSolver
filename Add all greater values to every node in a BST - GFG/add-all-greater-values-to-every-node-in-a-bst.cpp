@@ -138,7 +138,7 @@ struct Node {
 
 int sum;
 
-void solve(Node* root){
+void solve(Node* root){  // reverse inorder
     if(!root)
         return;
     
