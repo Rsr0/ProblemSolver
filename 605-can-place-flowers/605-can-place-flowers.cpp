@@ -8,23 +8,20 @@ public:
         if(sz==0) return 0;
         if(sz==1) return flowerbed[0]==0;
             
-        int  cnt=0; //count continuous 0s
-        for(int i=0;i<=sz;i++){
-            if(i<sz && flowerbed[i]==0){
-                cnt++;
-                //[0] 1
-                if(i==0 ) 
-                    cnt++;
-                if(i==sz-1)
-                    cnt++;
-            }
-            else{
-                n-=(cnt-1)/2;
-                if(n<=0) return 1;
-                cnt=0;
-            }
-        }
-        return 0;
+        // add 0s on start and end
+        flowerbed.push_back(0);
+        flowerbed.insert(flowerbed.begin(),0);
+        sz+=2;
+        int i=1, cnt=0;
         
+        // check if there are 3 0s in row
+        while(i<sz-1 && cnt<n){
+            if(flowerbed[i-1]==0 && flowerbed[i]==0 && flowerbed[i+1]==0){
+                cnt++;
+                flowerbed[i]=1;
+            }
+            i++;
+        }
+        return cnt==n;
     }
 };
