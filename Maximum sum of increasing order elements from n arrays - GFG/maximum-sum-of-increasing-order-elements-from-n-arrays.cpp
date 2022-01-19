@@ -36,24 +36,23 @@ int maximumSum( int n,int m, vector<vector<int>> &a) {
 
     // Complete the function
     int sum=0;
-    int maxi=a[n-1][0];
-    for(int j=1;j<m;j++){
-        maxi=max(maxi,a[n-1][j]);
-    }
-    sum=maxi;
+    for(int i=0;i<n;i++)
+        sort(a[i].begin(), a[i].end());
     
-      for(int i=n-2;i>=0;i--){
-        int currMax=0;
-          for(int j=0;j<m;j++){
-              if(a[i][j]<maxi)
-                 currMax=max(currMax, a[i][j]);
-          }
-          if(currMax==0)
-            return 0;
-            
-        sum+=currMax;
-        maxi=currMax;
-      }
+    int maxi=a[n-1][m-1];
+    sum=maxi;
+    for(int i=n-2;i>=0;i--){
+        int j;
+        for( j=m-1;j>=0;j--){
+            if(a[i][j]<maxi){
+                sum+=a[i][j];
+                maxi=a[i][j];
+                break;
+            }
+        }
+        if(j<0) return 0;
+    }
+    
       return sum;
    
 }
