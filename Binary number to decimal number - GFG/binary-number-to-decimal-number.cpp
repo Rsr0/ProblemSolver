@@ -11,16 +11,9 @@ class Solution
 		    // Code here.
 		    int res=0;
 		    int n=str.size();
-		    reverse(str.begin(), str.end());
-		    int i=0;
-		    int p=1;
-		    while(i<n){
-		        if(str[i]=='1'){
-		              res+=p;
-		        }
-		      p*=2;
-		        i++;
-		    }
+		   
+		    for(int i=0;i<n;i++)
+		        res+=(1<<(n-i-1)) * (str[i]-'0');
 		    return res;
 		}
 };
