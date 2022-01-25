@@ -4,18 +4,14 @@ public:
         int n=arr.size();
         if(n<3) return 0;
 
-        int i=1;
-        while(i<n && arr[i-1]<arr[i]){
-            i++;
-        }
-        if(i==1 || i==n)
-            return 0;
+        int left=0, right=n-1;
+        while(left+1<n && arr[left]<arr[left+1])
+            left++;
         
-        while(i<n && arr[i-1]>arr[i]){
-            i++;
-        }
+        while(right>0 && arr[right-1]>arr[right])
+            right--;
         
-        return (i==n)? 1:0;
+        return left>0 && left==right && right<n-1;
    
     }
 };
