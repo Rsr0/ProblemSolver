@@ -26,7 +26,7 @@ class Solution {
   
     int leastWeightCapacity(int arr[], int N, int D) {
         // code here
-        int low=1, high=accumulate(arr, arr+N, 0);
+        int low=*max_element(arr, arr+N), high=accumulate(arr, arr+N, 0);
         int ans=0;
         while(low<=high){
             int mid=low+(high-low)/2;
