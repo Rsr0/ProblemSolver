@@ -1,4 +1,4 @@
-#define print cout<<"("<<left[i]<<","<<right[i]<<")"
+
 class Solution {
 public:
     int largestRectangleArea(vector<int>& heights) {
@@ -30,7 +30,6 @@ public:
         
         int ans=0;
         for(int i=0;i<n;i++){
-         // print;
             ans=max(ans, heights[i]*(right[i]-left[i]+1));
         }
         return ans;
