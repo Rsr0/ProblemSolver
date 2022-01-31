@@ -7,13 +7,14 @@ public:
             return;
         }
         
-        if(right>0) solve(res, s+")", left, right-1);
-        if(left>0) solve(res, s+"(", left-1, right+1);
+        if(left>0) solve(res, s+"(", left-1, right);
+        if(right>left) solve(res, s+")", left, right-1);
+        
     }
     
     vector<string> generateParenthesis(int n) {
         vector<string> res;
-        solve(res, "", n, 0);
+        solve(res, "", n, n);
         return res;
     }
 };
