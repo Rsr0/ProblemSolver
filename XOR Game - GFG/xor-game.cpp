@@ -11,11 +11,16 @@ class Solution{
 public:
     int xorCal(int k){
         // code here
-        if(k%2==0)  return -1;
+        // if(k%2==0)  return -1;
         if(k==1) return 2;
-        int a=k>>1; // k/2
-        int b=a^k;
-        return abs(a-b)==1 ? min(a,b) : -1; 
+        // int a=k>>1; // k/2
+        // int b=a^k;
+        // return abs(a-b)==1 ? min(a,b) : -1; 
+        
+        if(((k+1)&k)==0)
+            return k/2;
+        else
+            return -1;
     }
 };
 
