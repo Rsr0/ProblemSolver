@@ -7,7 +7,7 @@ public:
         for(auto it:beans)  sum+=it;
         
         for(int i=0;i<n;i++){
-            long long change = sum - (n-i) * (long long)beans[i] * 1ll;
+            long long change = sum - (n-i) * (long long)beans[i] * 1LL;
             ans=min(ans, change);
         }
         return ans;
