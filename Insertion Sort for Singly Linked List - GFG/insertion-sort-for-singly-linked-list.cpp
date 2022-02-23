@@ -47,20 +47,21 @@ class Solution
     Node* insertionSort(struct Node* head)
     {
         //code here
-       Node *t1=head, *t2=head, *mini=head;
-        while(t1!=NULL){
-            mini=t1;
-            t2=t1;
+       Node* res=new Node(-1);
+       Node* temp=res;
+       Node* curr=head;
+        while(curr){
+            temp=res;
             
-            while(t2!=NULL){
-                if(t2->data < mini->data)
-                    mini=t2;
-                t2=t2->next;
-            }
-            swap(mini->data, t1->data);
-            t1=t1->next;
+            while(temp->next && curr->data >= temp->next->data)
+                temp=temp->next;
+            
+            Node* nxt=temp->next;
+            temp->next=curr;
+            curr=curr->next;
+            temp->next->next=nxt;
         }
-        return head;
+        return res->next;
     }
     
 };
