@@ -11,10 +11,13 @@ class Solution{
 public:
     vector<int> primeDivision(int N){
         // code here
-        vector<int>isPrime(N,1);
+        // Sieve method
+        vector<int>isPrime(N,1);   
         for(int i=2;i*i<N;i++){
-            for(int j=2;i*j<N;j++)
-                isPrime[i*j]=0;
+            if(isPrime[i]){
+            for(int j=i*i;j<N;j+=i)
+                isPrime[j]=0;
+            }
         }
         
         for(int i=2;i<=(N/2)+1;i++){
