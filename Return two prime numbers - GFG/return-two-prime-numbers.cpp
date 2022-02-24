@@ -17,7 +17,7 @@ public:
                 isPrime[i*j]=0;
         }
         
-        for(int i=2;i<N;i++){
+        for(int i=2;i<=(N/2)+1;i++){
             if(isPrime[i] && isPrime[N-i])
                 return {i,N-i};
         }
