@@ -17,7 +17,7 @@ int dp[501][501];
         for(auto it:blocked_cells){
             dp[it[0]][it[1]]=-1;
         }
-        dp[0][1]=1;
+        dp[1][0]=1;
         for(int i=0;i<n;i++){
             for(int j=0;j<m;j++){
                 if(dp[i+1][j+1]==-1){
