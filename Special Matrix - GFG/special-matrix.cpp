@@ -9,38 +9,26 @@ class Solution {
 public:
 int mod=1e9+7;
 
-int ans=0;
 int dp[501][501];
-
-int check(vector<vector<int>>& mat, int i, int j){
-    if(i<0 || j<0 || mat[i][j]==1)
-        return 0;
-       if(i==0 && j==0)
-        return 1;
-
-    if(dp[i][j]!=-1)
-        return dp[i][j]%mod;
- 
-    
-    dp[i][j]=check(mat,i-1,j)%mod + check(mat,i,j-1)%mod;
-    
-    return dp[i][j]%mod;
-    
-}
 
 	int FindWays(int n, int m, vector<vector<int>>blocked_cells){
 	    // Code here
-	    memset(dp,-1,sizeof(dp));
-        vector<vector<int>> mat(n,vector<int>(m,0));
-        
+
         for(auto it:blocked_cells){
-            mat[it[0]-1][it[1]-1]=1;
-            // cout<<it[0]-1<< it[1]-1;
-        
+            dp[it[0]][it[1]]=-1;
         }
-        // cout<<mat[n-1][m-1];
-        return check(mat, n-1, m-1);
-	    
+        dp[0][1]=1;
+        for(int i=0;i<n;i++){
+            for(int j=0;j<m;j++){
+                if(dp[i+1][j+1]==-1){
+                    dp[i+1][j+1]=0;
+                }
+                else{
+                    dp[i+1][j+1]=(dp[i][j+1] + dp[i+1][j])%mod;
+                }
+            }   
+        }
+        return dp[n][m];
 	}
 };
 
