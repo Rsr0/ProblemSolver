@@ -6,10 +6,10 @@ public:
         string ans="", s;
         stringstream ss(path);
         
-        while(getline(ss,s,'/')){
+        while(getline(ss,s,'/')){   // splitting string
             if(s=="." || s=="") continue;
             else if(s==".."){
-                if(!v.empty())  v.pop_back();
+                if(!v.empty())  v.pop_back(); //go to previous dir
              }
             else
                 v.push_back(s);
