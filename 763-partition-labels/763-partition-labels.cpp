@@ -2,17 +2,16 @@ class Solution {
 public:
     vector<int> partitionLabels(string s) {
         vector<int> res;
-        vector<int> pos(26,0);
+        vector<int> last_pos(26);
         
         for(int i=0;i<s.size();i++)
-            pos[s[i]-'a']=i;
+            last_pos[s[i]-'a']=i;
         
-        
-        int idx=INT_MIN, prev=0;
+        int cut=INT_MIN, prev=0;
         for(int i=0;i<s.size();i++){
-            idx=max(idx, pos[s[i]-'a']);
-            if(idx==i){
-                res.push_back(idx-prev+1);
+            cut=max(cut, last_pos[s[i]-'a']);
+            if(cut==i){
+                res.push_back(cut-prev+1);
                 prev=i+1;
             }
         }
