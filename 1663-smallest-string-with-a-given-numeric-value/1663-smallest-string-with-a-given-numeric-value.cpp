@@ -1,20 +1,15 @@
 class Solution {
 public:
     string getSmallestString(int n, int k) {
-        string res="";
+        string res(n,'a');
+        k-=n;
         
-        while(n--){
-            int left=n;
-            int max_val=n*26; // n-1 * 26
-            if(k>max_val){
-                res+=(k-max_val-1) + 'a';
-                k=max_val;
-            }
-            else{
-                res+='a';
-                k--;
-            }
+        for(int i=n-1;k>0;i--){
+            int ch=min(k,25);
+            res[i]+=ch;
+            k-=ch;
         }
+        
         return res;
     }
 };
