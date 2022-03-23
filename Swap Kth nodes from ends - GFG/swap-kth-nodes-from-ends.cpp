@@ -86,14 +86,7 @@ Node *swapkthnode(Node* head, int num, int K)
 {
     // Your Code here
     if(!head || K>num)   return head;
-    
 
-    // int n=0;
-    // while(curr){
-    //     curr=curr->next;
-    //     n++;
-    // }
-    // cout<<n;
     int k1=K, k2=num-K+1;
     if(k1==k2)  return head;
     if(k1>k2)   swap(k1,k2);
@@ -118,8 +111,6 @@ Node *swapkthnode(Node* head, int num, int K)
     if(p==head) head=q;
     
     return head;
-    
- 
-    return head;
+
     
 }
