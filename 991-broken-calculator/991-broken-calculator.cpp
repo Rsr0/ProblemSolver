@@ -11,7 +11,7 @@ public:
             res++;
         }
         
-        if(target<=startValue)
+        if(target<startValue)
             res+=startValue-target;
         
         return res;
