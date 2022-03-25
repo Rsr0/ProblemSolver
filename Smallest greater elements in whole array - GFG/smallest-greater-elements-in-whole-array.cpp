@@ -35,31 +35,32 @@ int main()
 int* greaterElement(int arr[], int n)
 {
     // Complete the function
-    vector<int> a;
-    for(int i=0;i<n;i++)
-        a.push_back(arr[i]);
-    sort(a.begin(), a.end());
-    
-    for(int i=0;i<n;i++){
 
-        auto it=upper_bound(a.begin(),a.end(), arr[i]);
-        if(it==a.end())
+    set<int> s;
+    for(int i=0;i<n;i++)
+        s.insert(arr[i]);
+     for(int i=0;i<n;i++){
+        auto it=s.find(arr[i]);
+        it++;
+        if(it==s.end())
             arr[i]=-10000000;
         else
-            arr[i]=a[it-a.begin()];
-    }
-
-    // set<int> s;
-    // for(int i=0;i<n;i++)
-        // s.insert(arr[i]);
-    //  for(int i=0;i<n;i++){
-    //     auto it=s.find(arr[i]);
-    //     it++;
-    //     if(it==s.end())
-    //         arr[i]=-10000000;
-    //     else
-    //         arr[i]=*it;
-    //  }
+            arr[i]=*it;
+     }
      
     return arr;
 }
+
+    // vector<int> a;
+    // for(int i=0;i<n;i++)
+    //     a.push_back(arr[i]);
+    // sort(a.begin(), a.end());
+    
+    // for(int i=0;i<n;i++){
+
+    //     auto it=upper_bound(a.begin(),a.end(), arr[i]);
+    //     if(it==a.end())
+    //         arr[i]=-10000000;
+    //     else
+    //         arr[i]=a[it-a.begin()];
+    // }
