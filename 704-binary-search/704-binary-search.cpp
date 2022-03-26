@@ -1,8 +1,15 @@
 class Solution {
 public:
     int search(vector<int>& nums, int target) {
-        if(binary_search(nums.begin(), nums.end(), target)){
-            return lower_bound(nums.begin(), nums.end(), target)-nums.begin();
+        int low=0, high=nums.size()-1;
+        while(low<=high){
+            int mid=low+(high-low)/2;
+            if(nums[mid]==target)
+                return mid;
+            else if(nums[mid]>target)
+                high=mid-1;
+            else
+                low=mid+1;
         }
         return -1;
     }
