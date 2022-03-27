@@ -8,6 +8,8 @@ public:
             for(int j=0;j<mat[0].size();j++){
                 if(mat[i][j]==1)
                     cnt1++;
+                else 
+                    break;
             }
            pq.push({cnt1,i});
         }
