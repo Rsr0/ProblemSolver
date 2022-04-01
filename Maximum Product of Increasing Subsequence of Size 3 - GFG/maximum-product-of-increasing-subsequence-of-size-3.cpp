@@ -13,10 +13,9 @@ class Solution{
     { 
         // Complete the function
         set<long int> st;
-        long int res=-1, curr;
         vector<int>r_max(n);
         vector<int> ans;
-        long int ele;
+        long int maxProd=-1;
         
         r_max[n-1]=arr[n-1];
         for(int i=n-2;i>=0;i--)
@@ -26,15 +25,14 @@ class Solution{
         for(int i=1;i<n;i++){
             st.insert(arr[i]);
             auto it=st.find(arr[i]);
-            if(it!=st.begin()){
+            if(it!=st.begin() && arr[i]<r_max[i]){
                 it--;
-                ele=*it;
-                if(arr[i]<r_max[i]){
-                    curr=(long) arr[i]*r_max[i]*ele;
-                    if(curr>res){
-                        ans={ele,arr[i],r_max[i]};
-                        res=curr;
-                    }
+                int p=*it; // prev smaller than current
+        
+                long int curr=(long) arr[i]*r_max[i]*p;
+                if(curr>maxProd){
+                    ans={p,arr[i],r_max[i]};
+                    maxProd=curr;
                 }
             }
         }
