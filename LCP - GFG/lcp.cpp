@@ -13,22 +13,16 @@ public:
         // code here
         sort(ar,ar+n);
         string ans="";
-        for(int i=0;i<ar[0].size();i++){
-            char c=ar[0][i];
-            bool flag=true;
-            
-            for(int j=1;j<n;j++){
-                if(ar[j][i]!=c)
-                    flag=false;
-            }
-            if(!flag)
-                break;
+        string s1=ar[0], s2=ar[n-1];
         
-            ans+=c;
-            
+        for(int i=0;i<s1.size() && s2.size();i++){
+         if(s1[i]!=s2[i])
+            break;
+         else ans+=s1[i];
         }
-        if(ans=="") return "-1";
-        return ans;
+        
+        return (ans=="") ? "-1" : ans;
+       
     }
 };
 
