@@ -18,8 +18,9 @@ public:
         for(int i=0;i<n;i++){
             if(!pq.empty() && pq.top()<a[i]){
                 sum+=(a[i]-pq.top());
-                pq.push(a[i]);
                 pq.pop();
+                pq.push(a[i]);
+                
             }
             pq.push(a[i]);
         }
