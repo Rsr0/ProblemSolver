@@ -5,26 +5,24 @@ using namespace std;
  // } Driver Code Ends
 class Solution{
 	public:
-	int dp[101][10001];
-	
-	int solve(vector<int> nums, int i, int amt){
-	    if(amt<0 || i<0) return INT_MAX-1;
-	    if(amt==0) return 0;
-	    
-	    if(dp[i][amt]!=-1)  return dp[i][amt];
-	    
-	    if(nums[i]<=amt)
-	        return dp[i][amt]=min(1+solve(nums, i, amt-nums[i]), solve(nums, i-1, amt));
-	   
-	   return dp[i][amt]=solve(nums, i-1, amt);
-	}
+
 	
 	int MinCoin(vector<int>nums, int amount)
 	{
 	    // Code here
-	    memset(dp,-1,sizeof(dp));
-	    int ans=solve(nums, nums.size()-1, amount);
-	    return ans>=INT_MAX-1 ? -1:ans;
+	    vector<long long int> dp(amount+1,INT_MAX);
+	    sort(nums.begin(), nums.end());
+	    dp[0]=0;
+	    
+	    for(int i=1;i<=amount;i++){
+	        for(int j=0;j<nums.size() && nums[j]<=i;j++){
+	            dp[i]=min(dp[i], 1LL + dp[i-nums[j]]);
+	        }
+	    }
+	    
+	    if(dp[amount]>=INT_MAX)
+	        return -1;
+	    return dp[amount];
 	}
 };
 
