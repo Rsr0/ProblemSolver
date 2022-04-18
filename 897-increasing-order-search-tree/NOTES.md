@@ -1,2 +1,1 @@
-> Inorder -> left **root** right
 ​
