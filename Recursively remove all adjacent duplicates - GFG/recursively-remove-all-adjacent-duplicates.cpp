@@ -1,0 +1,48 @@
+// { Driver Code Starts
+// Initial Template for C++
+
+#include <bits/stdc++.h>
+using namespace std;
+
+ // } Driver Code Ends
+//User function template for C++
+
+class Solution{
+public:
+
+    string remove(string s){
+        // code here
+    while(1){
+     int n=s.size();
+        string t="";
+        int i=0;
+        while(i<n){
+                int j=i;
+                while(++j<n && s[i]==s[j]) ;
+                if(j==i+1)
+                    t+=s[i];
+                i=j;
+            }
+            
+            if(s==t) break;
+            s=t;
+        }
+    return s;
+    }
+};
+
+// { Driver Code Starts.
+
+int main() {
+    int t;
+    string tc;
+    getline(cin, tc);
+    t = stoi(tc);
+    while (t--) {
+        string s;
+        getline(cin, s);
+        Solution ob;
+        cout << ob.remove(s) << "\n";
+    }
+    return 0;
+}  // } Driver Code Ends
