@@ -12,7 +12,10 @@ class Solution
     int sum(int a , int b)
     {
         //code here
-        return a+b;
+       if(b==0) return a;
+       else 
+            return sum(a^b, (a&b)<<1);
+       
     }
 };
 
