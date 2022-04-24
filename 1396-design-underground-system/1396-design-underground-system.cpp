@@ -4,7 +4,7 @@ public:
         
     }
     unordered_map<int, pair<string, int>> mp;
-    unordered_map<string, unordered_map<string, pair<int,int>>> v;
+    unordered_map<string, unordered_map<string, pair<int,int>>> v; // id->(start), end -> (time diff, count) 
     
     void checkIn(int id, string stationName, int t) {
         mp[id]={stationName, t};
@@ -18,7 +18,7 @@ public:
         }
         else{
              v[st][stationName].second++;
-             v[st][stationName].first+=t-mp[id].second;
+             v[st][stationName].first+=t-mp[id].second; // adding time diff
         }
     }
     
