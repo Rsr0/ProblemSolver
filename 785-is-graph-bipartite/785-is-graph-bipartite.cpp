@@ -1,21 +1,15 @@
 class Solution {
 public:
-    bool bfs(int src, vector<vector<int>>& graph, vector<int>& color){
-       queue<int> q;
-        q.push(src);
-        color[src]=1;
-        while(!q.empty()){
-            int curr=q.front();
-            q.pop();
-            for(auto it:graph[curr]){
+    bool dfs(int src, vector<vector<int>>& graph, vector<int>& color){
+            for(auto it:graph[src]){
                 if(color[it]==-1){
-                    color[it]=1-color[curr]; //toggle the color
-                    q.push(it);
+                    color[it]=1-color[src]; //toggle the color
+                    if(!dfs(it, graph, color))
+                        return 0;
                 }
-                else if(color[it]==color[curr])
+                else if(color[it]==color[src])
                     return 0;
             }
-        }
         return 1;
     }
     
@@ -24,7 +18,7 @@ public:
         vector<int> color(n, -1);
         for (int i = 0; i < n; i++){
             if (color[i] == -1)
-                if (!bfs(i, graph, color))
+                if (!dfs(i, graph, color))
                     return 0;
         }
         return 1;
