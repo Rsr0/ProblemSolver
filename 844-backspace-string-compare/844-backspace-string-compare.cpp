@@ -1,22 +1,18 @@
 class Solution {
 public:
-    
-    stack<char> st;
+
     string solve(string s){
+        string res="";
         for(auto it:s){
             if(it=='#'){
-                if(!st.empty())
-                    st.pop();
+                if(!res.empty())
+                    res.pop_back();
             }
             else
-                st.push(it);
+                res+=it;
         }
-        s="";
-        while(!st.empty()){
-            s+=st.top();
-            st.pop();
-        }
-        return s;
+     
+        return res;
     }
     bool backspaceCompare(string s, string t) {
          s=solve(s);
