@@ -99,15 +99,11 @@ Node* sortedMerge(Node* head1, Node* head2)
      curr->next=t;
     curr=curr->next;
  }
- while(head1){
-     curr->next=new Node(head1->data);
-     curr=curr->next;
-     head1=head1->next;
+if(head1){
+     curr->next=head1;
  }
- while(head2){
-     curr->next=new Node(head2->data);
-     curr=curr->next;
-     head2=head2->next;
+ if(head2){
+     curr->next=head2;
  }
  return ans->next;
  
