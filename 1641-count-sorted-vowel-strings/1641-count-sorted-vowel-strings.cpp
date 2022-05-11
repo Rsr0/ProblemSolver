@@ -1,17 +1,13 @@
 class Solution {
 public:
-    
-    int solve(int st, int cnt){
-        if(cnt==1)
-            return 5-st;
-        int sum=0;
-        for(int i=st;i<5;i++){
-            sum+=solve(i, cnt-1);
-        }
-        return sum;
-    }
-    
     int countVowelStrings(int n) {
-        return solve(0,n);
+        int a=1, e=1, i=1, o=1, u=1;
+        while(--n){
+            o+=u;
+            i+=o;
+            e+=i;
+            a+=e;
+        }
+        return a+e+i+o+u;
     }
 };
