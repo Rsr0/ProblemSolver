@@ -9,4 +9,11 @@ a+=e;
 return a+e+i+o+u;
 ```
 ​
-​
+```
+int ans=1;
+for(int i=0;i<n;i++){
+ans=ans*(5+i);
+ans=ans/(i+1);
+}
+return ans;
+```
