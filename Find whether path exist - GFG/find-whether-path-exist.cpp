@@ -10,38 +10,37 @@ class Solution
     public:
     //Function to find whether a path exists from the source to destination.
     
-    bool isPath(vector<vector<int>>& grid, int sr, int sc, int dr, int dc){
-        if(sr==dr && sc==dc)
-            return 1;
-        if(sr<0 || sr>=grid.size() || sc<0 || sc>=grid[0].size() || grid[sr][sc]==0 || grid[sr][sc]==-1) 
-            return 0;
-        grid[sr][sc]=-1;
-
-            return (isPath(grid, sr-1,sc,dr,dc) || isPath(grid, sr+1,sc,dr,dc) 
-                    || isPath(grid, sr,sc-1,dr,dc) || isPath(grid, sr,sc+1,dr,dc));
-        
+   bool isValid(int x, int y, int n, int m){
+        return (x >= 0 and x < n and y >=0 and y < m);
     }
-    
+ 
     bool is_Possible(vector<vector<int>>& grid) 
     {
         //code here
+        vector<pair<int,int>> d={{0,1},{0,-1},{1,0},{-1,0}};
         int n=grid.size(), m=grid[0].size();
-        int sr,sc,dr,dc;
-        for(int i=0;i<n;i++){
-            for(int j=0;j<m;j++){
-                if(grid[i][j]==1){
-                    sr=i, sc=j;
-                }
-                
-                if(grid[i][j]==2){
-                    dr=i, dc=j;
+        queue<pair<int,int>>q;
+        for(int i=0;i<n;i++)
+            for(int j=0;j<m;j++)
+                if(grid[i][j]==1)
+                    q.push({i,j});
+            
+        while(!q.empty()){
+            int x=q.front().first, y=q.front().second;
+            q.pop();
+            for(int i=0;i<4;i++){
+                int nx=x+d[i].first;
+                int ny=y+d[i].second;
+                if(isValid(nx,ny,n,m)){
+                    if(grid[nx][ny]==2) return 1;
+                    if(grid[nx][ny]==3){
+                        grid[nx][ny]=1;
+                        q.push({nx,ny});
+                    }
                 }
             }
         }
-       
-        return isPath(grid, sr,sc,dr,dc);
-        // return 1;
-        
+        return 0;
     }
 };
 
