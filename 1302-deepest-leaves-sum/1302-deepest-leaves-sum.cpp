@@ -11,36 +11,27 @@
  */
 class Solution {
 public:
+    int sum=0;
+    int maxDepth(TreeNode* root){
+        if (root==NULL)
+            return 0;
+        return 1 + max(maxDepth(root->left), maxDepth(root->right));
+    }   
     
-    vector<vector<int>> level(TreeNode* root){
-        vector<vector<int>> v;
-        if(!root) return v; 
-        
-        queue<TreeNode*>q;
-        q.push(root);
-        while(!q.empty()){
-            int n=q.size();
-            vector<int> t;
-            while(n--){
-                TreeNode* node=q.front();
-                q.pop();
-                t.push_back(node->val);
-                if(node->left)
-                    q.push(node->left);
-                if(node->right)
-                    q.push(node->right);
-            }
-            v.push_back(t);
+    void findsum(TreeNode* root, int curr, int max){ 
+        if(root!=NULL){
+            if(curr==max)
+                sum=sum+root->val;
+            else
+                findsum(root->left,curr+1,max);
+
+        findsum(root->right,curr+1,max);
         }
-        return v;
     }
     
     int deepestLeavesSum(TreeNode* root) {
-        vector<vector<int>> v = level(root);
-        int n=v.size()-1, sum=0;
-        
-        for(auto it:v[n])
-            sum+=it;
+        int h=maxDepth(root);
+        findsum(root,1,h);
         return sum;
     }
 };
