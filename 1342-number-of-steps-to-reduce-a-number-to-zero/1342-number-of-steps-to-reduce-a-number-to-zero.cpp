@@ -3,10 +3,10 @@ public:
     int numberOfSteps(int n) {
         int cnt=0;
         while(n!=0){
-            if(n%2)
+            if(n&1)
                 n--;
             else
-                n/=2;
+                n=n>>1;
             cnt++;
         }
         return cnt;
