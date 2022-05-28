@@ -15,7 +15,7 @@ public:
         while(x!=y && (x>=1 && y>=1)){
             if(x>y)
                 x/=2;
-            else if(y>x)
+            else 
                 y/=2;
             
             cnt++;
