@@ -10,4 +10,4 @@ UNION
 SELECT product_id, "store3" AS store, store3 AS price FROM Products
 WHERE store3 is not null
 
-ORDER BY product_id;
+ORDER BY 1,2 ;
