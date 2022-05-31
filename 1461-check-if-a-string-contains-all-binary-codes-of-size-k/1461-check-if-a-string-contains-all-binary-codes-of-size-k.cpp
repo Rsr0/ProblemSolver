@@ -9,7 +9,7 @@ public:
         for(int i=0;i<=s.size()-k;i++){
             check[s.substr(i,k)]=true;
             if(check.size()==pow(2,k)){
-                return true;
+                break;
             }
         }
         
