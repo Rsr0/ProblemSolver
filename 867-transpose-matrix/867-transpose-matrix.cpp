@@ -3,9 +3,9 @@ public:
     vector<vector<int>> transpose(vector<vector<int>>& matrix) {
         int n=matrix.size(), m=matrix[0].size();
         vector<vector<int>> ans(m,vector<int>(n,0));
-        for(int i=0;i<matrix.size();i++){
-            for(int j=0;j<matrix[0].size();j++)
-                ans[j][i]=matrix[i][j];
+        for(int i=0;i<m;i++){
+            for(int j=0;j<n;j++)
+                ans[i][j]=matrix[j][i];
         }
         return ans;
     }
