@@ -1,1 +1,1 @@
-​
+IF(distance IS NULL,0,SUM(distance))
