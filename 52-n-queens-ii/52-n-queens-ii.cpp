@@ -1,37 +1,37 @@
 class Solution {
 public:
+    int cnt;
     
-        void solve(vector<string> &board, int row, vector<vector<string>> &ans, vector<int> &uppercol,  vector<int> &leftDiagonal,  vector<int> &rightDiagonal, int n){
-        if(row==n){
-            ans.push_back(board);
-            return;
+    bool isSafe(int mat[][10], int r, int c, int n){
+        for(int i=0;i<r;i++)                      // same col
+            if(mat[i][c])  return 0;
+        
+        for(int i=r,j=c; i>=0 && j>=0; i--,j--)   // same '\' diag
+            if(mat[i][j])   return 0;
+        
+        for(int i=r,j=c; i>=0 && j<n; i--,j++)    // same '/' diag
+            if(mat[i][j])   return 0;
+        
+        return 1;
+    }
+    
+    void solve(int mat[][10], int r, int n){
+        if(r==n){
+            cnt++; return;
         }
-        for(int col=0;col<n;col++){
-        if(uppercol[col]==0 && leftDiagonal[n-1 + row - col]==0 && rightDiagonal[row+col]==0){
-            board[row][col]='Q';
-            uppercol[col]=1;
-            leftDiagonal[n-1 + row - col]=1;
-            rightDiagonal[row+col]=1;
-            solve(board,row+1,ans,uppercol,leftDiagonal,rightDiagonal,n);
-            board[row][col]='.';
-             uppercol[col]=0;
-            leftDiagonal[n-1 + row - col]=0;
-            rightDiagonal[row+col]=0;
-            
-        }
+        for(int i=0;i<n;i++){
+            if(isSafe(mat, r, i, n)){
+                mat[r][i]=1;  // place Q
+                solve(mat,r+1,n);
+                mat[r][i]=0;  // remove Q
             }
+        }
     }
     
     int totalNQueens(int n) {
-             vector<vector<string>> ans;
-        if(n==2 || n==3)
-            return 0;
-        
-        string s(n,'.');
-        vector<string> board(n,s);
-        vector<int> uppercol(n, 0), leftDiagonal(2 * n - 1, 0), rightDiagonal(2 * n - 1, 0);
-
-        solve(board,0,ans,uppercol,leftDiagonal,rightDiagonal,n);
-        return ans.size();
+        cnt=0;
+        int mat[10][10]={0};
+        solve(mat,0,n);
+        return cnt;
     }
 };
