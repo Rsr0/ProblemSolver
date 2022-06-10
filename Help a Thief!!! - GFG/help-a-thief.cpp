@@ -8,10 +8,7 @@ using namespace std;
 //User function Template for C++
 
 class Solution {
-    bool static cmp(pair<int,int> &a, pair<int,int> &b){
-        return b.second<a.second;
-    }
-    
+
   public:
     int maxCoins(int A[], int B[], int T, int N) {
         // code here
@@ -19,18 +16,18 @@ class Solution {
         
         vector<pair<int,int>> v;
         for(int i=0;i<N;i++){
-            v.push_back({A[i],B[i]});
+            v.push_back({B[i],A[i]});
         }
         
-        sort(v.begin(),v.end(), cmp);
+        sort(v.begin(),v.end(),greater<pair<int,int>>());
         // for(int i=0;i<N;i++){
         //     cout<<v[i].first<<" : "<<v[i].second<<endl;
         // }
         int i=0, ans=0;
         while(T>0 && i<N){
-            int plate=min(T,v[i].first);
+            int plate=min(T,v[i].second);
             T-=plate;
-            ans+=plate*v[i].second;
+            ans+=plate*v[i].first;
             i++;
         }
         return ans;
