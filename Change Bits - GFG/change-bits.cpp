@@ -11,12 +11,7 @@ class Solution {
   public:
     vector<int> changeBits(int N) {
         // code here
-        int bits=0;
-        int n=N;
-        while(n!=0){
-            bits++;
-            n>>=1;
-        }
+        int bits=log2(N)+1;
         int num=pow(2,bits)-1;
         int diff=num-N;
         return {diff,num};
