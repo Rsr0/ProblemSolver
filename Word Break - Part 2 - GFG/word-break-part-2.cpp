@@ -9,9 +9,8 @@ using namespace std;
 
 class Solution{
 public:
-
+unordered_set<string> mp;
 vector<string> ans;
-unordered_set<string> dt;
 
 void solve(string s, int idx, string t){
     if(idx>=s.size()){
@@ -21,20 +20,20 @@ void solve(string s, int idx, string t){
     
     for(int i=idx;i<s.size();i++){
         string str=s.substr(idx, i-idx+1);
-        if(dt.find(str)!=dt.end())
+        if(mp.find(str)!=mp.end())
             solve(s, i+1, t+str+" ");
     }
-    
 }
 
     vector<string> wordBreak(int n, vector<string>& dict, string s)
     {
         // code here
-        for(auto i:dict)
-            dt.insert(i);
+        for(auto d:dict)
+            mp.insert(d);
         
         solve(s,0,"");
         return ans;
+        
     }
 };
 
