@@ -43,7 +43,7 @@ number of set bits in 12.</span></pre>
 
 <div><strong><span style="font-size:18px">Constraints :</span></strong></div>
 
-<div><span style="font-size:18px">1 &lt;= A, B &lt;= 10<sup>9</sup></span></div>
+<div><span style="font-size:18px">0 &lt;= A, B &lt;= 10<sup>9</sup></span></div>
 
 <div>&nbsp;</div>
  <p></p>
