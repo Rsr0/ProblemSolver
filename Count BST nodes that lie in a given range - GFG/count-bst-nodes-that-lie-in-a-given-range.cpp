@@ -91,7 +91,7 @@ int cnt=0;
 
 void solve(Node *root, int l, int h){
     if(!root)   return;
-    // if(root->data < l || root->data > h)    return;
+    // if (root->data == l && root->data == h) return 1;
     if(root->data >= l && root->data<=h) {  
         cnt++;
         solve(root->left, l ,h);
