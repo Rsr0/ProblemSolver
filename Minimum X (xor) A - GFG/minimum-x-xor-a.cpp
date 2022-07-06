@@ -18,7 +18,7 @@ class Solution {
         }
         
         int ans=0;
-        for(int i=30;i>=0;i--){
+        for(int i=30;i>=0 && cnt>0;i--){
             if(cnt<=0)  break;
             if((a&(1<<i)) > 0){
                 cnt--;
