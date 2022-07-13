@@ -11,24 +11,30 @@
  */
 class Solution {
 public:
-    map<int, vector<int>> mp;
-    
-    void solve(TreeNode* root, int h){
-    if(!root) return;
-        
-    mp[h].push_back(root->val);
-    
-    solve(root->left, h+1);
-    solve(root->right, h+1);
-    }
-    
-    vector<vector<int>> levelOrder(TreeNode* root) {
+  vector<vector<int>> levelOrder(TreeNode* root) {
         vector<vector<int>> ans;
         if(!root) return ans; //{}
         
-        solve(root,0);
-        for(auto it:mp){
-            ans.push_back(it.second);
+	    queue<TreeNode*> q;
+        q.push(root);
+        q.push(NULL);
+         vector<int> v;
+        TreeNode* temp;
+        while(!q.empty()){
+            temp=q.front();
+            q.pop();
+            if(!temp){
+                ans.push_back(v);
+                v.clear();
+                if(!q.empty())
+                    q.push(NULL);
+            }
+          
+            else{
+                v.push_back(temp->val);
+                if(temp->left) q.push(temp->left);
+                if(temp->right) q.push(temp->right);
+            }
         }
         return ans;
     }
