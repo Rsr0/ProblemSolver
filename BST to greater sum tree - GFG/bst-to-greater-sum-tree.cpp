@@ -97,19 +97,16 @@ class Solution
 {
     public:
     int sum=0;
-    void solve(struct Node *root, int &sum){
-        if(!root) return;
-        solve(root->right,sum);
-        int x=root->data;
-        root->data=sum;
-        sum+=x;
-        solve(root->left,sum);
-    }
+    
     void transformTree(struct Node *root)
     {
         //code here
-        
-        solve(root,sum);
+        if(!root) return;
+        transformTree(root->right);
+        int x=root->data;
+        root->data=sum;
+        sum+=x;
+        transformTree(root->left);
     }
 };
 
