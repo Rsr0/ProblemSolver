@@ -4,28 +4,22 @@ public:
         int n=matrix.size();
         int m=matrix[0].size();     
         
-        for(int i=0;i<n;i++)
-         for(int j=1;j<m;j++)
-            matrix[i][j]+=matrix[i][j-1];
-        
         int ans=INT_MIN;
         for(int start=0;start<m;start++){
+             vector<int> sums(n);
             for(int end=start;end<m;end++){
                 set<int>s={0};
                 int prefSum=0;
-                for(int i=0;i<n;i++){
-                    int sum=matrix[i][end];
-                    
-                    if(start>0)
-                        sum-=matrix[i][start-1];
-                    
+                for(int i=0;i<n;i++)
+                    sums[i]+=matrix[i][end];
+                
+                for(int sum:sums){
                     prefSum+=sum;
                     auto it=s.lower_bound(prefSum-k);
                     if(it!=s.end())
                         ans=max(ans,prefSum-(*it));
                 
                     s.insert(prefSum);
-
                 }
             }
         }
