@@ -5,14 +5,14 @@ public:
         
         if(k==0 || n==0 || n==1) return 0;
         
-        int ans=0;
-        if(k>=n/2){   // max number of transactions possible
-            for(int i=1;i<n;i++){
-                if(prices[i] > prices[i-1])
-                    ans+=prices[i]-prices[i-1];
-            }
-            return ans;
-        }
+        // int ans=0;
+//         if(k>=n/2){   // max number of transactions possible
+//             for(int i=1;i<n;i++){
+//                 if(prices[i] > prices[i-1])
+//                     ans+=prices[i]-prices[i-1];
+//             }
+//             return ans;
+//         }
         
         vector<int> buy(k+1, INT_MAX);
         vector<int> sell(k+1, 0);
