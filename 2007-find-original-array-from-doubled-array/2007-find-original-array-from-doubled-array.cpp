@@ -4,9 +4,7 @@ public:
         vector<int> ans;
         int n=changed.size();
         if(n%2) return ans;
-        
-        // sort(changed.begin(), changed.end());
-        
+
         map<int,int> mp;
         for(auto i:changed)
             mp[i]++;
