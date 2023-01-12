@@ -13,18 +13,18 @@ class Solution {
 public:
     int minimizeSum(int N, vector<int> arr) {
         // code here
-        priority_queue<int, vector<int>, greater<int>> pq;
+        priority_queue<int> pq;
         
         for(auto i:arr)
-            pq.push(i);
+            pq.push(-i);
             
         int sum=0;
         while(!pq.empty() && pq.size()>1){
-            int a=pq.top(); pq.pop();
-            int b=pq.top(); pq.pop();
+            int a=-pq.top(); pq.pop();
+            int b=-pq.top(); pq.pop();
             int c=a+b;
             sum+=c;
-            pq.push(c);
+            pq.push(-c);
         }
         return sum;
         
