@@ -10,16 +10,19 @@ class Solution
     //Function to count the number of ways in which frog can reach the top.
     long long countWays(int n)
     {
+        if(n<3)    return n;
+        if(n==3)    return 4;
         int mod=1e9+7;
         // your code here
-        long long dp[n+1]={0};
-        dp[0]=dp[1]=1;
-        dp[2]=2;
-        dp[3]=4;
+        long long one=1, two=2, three=4;
+        long long ans=0;
         for(int i=4;i<=n;i++){
-            dp[i]=(dp[i-1]%mod + dp[i-2]%mod + dp[i-3]%mod)%mod;
+            ans=(one%mod + two%mod + three%mod)%mod;
+            one=two;
+            two=three;
+            three=ans;
         }
-        return dp[n]%mod;
+        return ans%mod;
         
     }
 };
